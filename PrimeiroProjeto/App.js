@@ -56,7 +56,7 @@ export default function App() {
   
   return (
     <View style = {style.container}>
-      {/* <Text style = {style.text}>{contador}</Text>
+      <Text style = {style.text}>{contador}</Text>
       <MyButton title='More One'onPressButton={more}/>
       <MyButton title='Less One' onPressButton={less}/>
       {
@@ -69,7 +69,8 @@ export default function App() {
 
       <Text style={style.text}>{contador2}</Text>
       <MyButton title='More Two'onPressButton={more2}/>
-      <MyButton title='Less Three' onPressButton={less3}/> */}
+      <MyButton title='Less Three' onPressButton={less3}/>
+      
 
     </View>
   
