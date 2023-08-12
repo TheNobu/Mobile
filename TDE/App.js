@@ -5,14 +5,21 @@ import { useState } from 'react';
 import Pagina2 from './src/components/Pagina2';
 import { StatusBar } from 'expo-status-bar';
 import Card from './src/components/Card';
+import Card2 from './src/components/Card2';
+import axios from 'axios'
+import  List from './src/components/List'
+import Header from './src/components/Header';
+import Api1 from './src/components/Api1';
+import Api2 from './src/components/Api2';
 
+const ListName = [{name: "Fulano", idade: 20}, {name: "Beltrano", idade: 22}, {name: "Ciclano", idade: 19}, {name: "Jhon Doe", idade: 30}]
 
 const style = StyleSheet.create({
   container: {
     flex:1,
     justifyContent:'center',
     alignItems:'center',
-    backgroundColor:'#ff4'
+    backgroundColor:'#fff'
   }
 })
 
@@ -21,6 +28,8 @@ export default function App() {
 
   const [show,setShow] = useState(false)
   const [cont,setCont] = useState(0)
+  const [catFact,setCatFact] = useState()
+  const [length,setLength] = useState()
 
   const more = () =>{
     setCont(cont+1)
@@ -36,20 +45,20 @@ export default function App() {
     setShow(!show)
   }
 
+  const fechtCatFact = async() =>{
+    try {
+      const {data} = await axios.get('https://catfact.ninja/fact')
+      setCatFact(data.fact)
+      setLength(data.length)
+    } catch (error) {
+      console.error(error)
+    }
+    
+  }
+
   return (
     <View style= {style.container}>
-      {/* <Pagina1/>
-      {
-        show ? (<Pagina2/>) : 
-        <></>
-      }
-      <MyButton title='Show' onPressButton={showText}/>
-      <Text>{cont}</Text>
-      <MyButton title='More One' onPressButton={more}/>
-      <MyButton title='Less One' onPressButton={less}/>
-      <MyButton title='Zero' onPressButton={zero}/> */}
-      <Card title='Imagem' content='Cacto' image='https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.techtudo.com.br%2Flistas%2F2023%2F06%2Fdall-e-2-e-mais-8-sites-para-criar-imagem-com-inteligencia-artificial-edsoftwares.ghtml&psig=AOvVaw13oPfy4DJoDHa0JViNUQGe&ust=1691279017471000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCLj46bqXxIADFQAAAAAdAAAAABA5'/>
-      <StatusBar style='auto'/>
+      <Api2/>
     </View>
   );
 }
