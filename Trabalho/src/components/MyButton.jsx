@@ -4,11 +4,12 @@ const style = StyleSheet.create({
     cointainer:{
         backgroundColor:'#fff',
         borderRadius:4,
-        width:52,
+        width:82,
     
     },
     text:{
         fontSize:20,
+        padding:8,
     }
 })
 const MyButton = ({title,onPressButton}) => {

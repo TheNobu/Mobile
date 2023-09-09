@@ -1,19 +1,28 @@
 import { useState } from "react";
 import { Button, StyleSheet, Text, TextInput, View } from "react-native";
 import MyButton from "../components/MyButton";
+import { useNavigation } from "@react-navigation/native";
 
 ;
 const style = StyleSheet.create({
-    text1:{
+    container:{
+        flex:1,
+        alignItems:'center',
+        alignContent:'center',
+        marginTop:82,
+        padding:10,
+
+    }
+    ,text1:{
         fontSize:24,
-        color:'#fff'
+        color:'#000'
     },
     campos:{
         height: 40,
         margin:10,
         borderWidth: 1,
         padding: 10,
-        width:200,
+        width:300,
     },
     text2:{
         fontSize:20,
@@ -32,6 +41,8 @@ const ModalMesage = ({valid}) =>{
 
 const Login = () => {
 
+    const navigation = useNavigation()
+
     const [email,setEmail]= useState()
     const [password,setPassword]= useState()
     const [va,setVa] = useState()
@@ -40,11 +51,13 @@ const Login = () => {
     const login2 = ()=>{
     if(email == "email@gmail.com" && password == 1234){
         setVa(true)
+        navigation.navigate('Home')
     }else{
         setVa(false)
     }
 }
     return (
+        <View style={style.container}>
         <View>
             <Text style={style.text1}>Email</Text>
             <TextInput
@@ -63,8 +76,9 @@ const Login = () => {
             secureTextEntry={true}
             />
             <Text>{false}</Text>
-            <MyButton title="Login" onPressButton={login2}/>
             <ModalMesage valid={va}/>
+            <MyButton title="Login" onPressButton={login2}/>
+        </View>
         </View>
     );
 }
